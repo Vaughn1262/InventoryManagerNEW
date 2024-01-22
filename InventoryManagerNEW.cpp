@@ -5,7 +5,21 @@
 
 int main()
 {
-    std::cout << "Hello World! your mama gay ye\n";
+    std::cout << "Inventory Manager: Please select an option\n";
+    int menuanswer;
+    std::cout << "1. Add an item\n 2. Drop an item\n 3. View Inventory\n 4. Quick Sell an item"; // Type a number and press enter
+    std::cin >> menuanswer; // Get user input from the keyboard
+    switch (menuanswer) {
+    case '1':
+        break;
+    case '2':
+        break;
+    case '3':
+        break;
+    case '4':
+        break;
+
+    }
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
