@@ -2,23 +2,27 @@
 //
 
 #include <iostream>
+using namespace std;
 
 int main()
 {
-    std::cout << "Inventory Manager: Please select an option\n";
+    cout << "Inventory Manager: Please select an option\n";
     int menuanswer;
-    std::cout << "1. Add an item\n 2. Drop an item\n 3. View Inventory\n 4. Quick Sell an item"; // Type a number and press enter
-    std::cin >> menuanswer; // Get user input from the keyboard
+    cout << "1. Add an item\n2. Drop an item\n3. View Inventory\n4. Quick Sell an item\n5.Exit\n"; // Type a number and press enter
+    cin >> menuanswer; // Get user input from the keyboard
     switch (menuanswer) {
-    case '1':
+    case 1:
+        cout << "1.epic\n";
+        cout << "1.epic\n";
         break;
-    case '2':
+    case 2:
         break;
-    case '3':
+    case 3:
         break;
-    case '4':
+    case 4:
         break;
-
+    case 5:
+        return 0;
     }
 }
 
