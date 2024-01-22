@@ -6,23 +6,27 @@ using namespace std;
 
 int main()
 {
-    cout << "Inventory Manager: Please select an option\n";
-    int menuanswer;
-    cout << "1. Add an item\n2. Drop an item\n3. View Inventory\n4. Quick Sell an item\n5.Exit\n"; // Type a number and press enter
-    cin >> menuanswer; // Get user input from the keyboard
-    switch (menuanswer) {
-    case 1:
-        cout << "1.epic\n";
-        cout << "1.epic\n";
-        break;
-    case 2:
-        break;
-    case 3:
-        break;
-    case 4:
-        break;
-    case 5:
-        return 0;
+    while (true) {
+
+
+        cout << "Inventory Manager: Please select an option\n";
+        int menuanswer;
+        cout << "1. Add an item\n2. Drop an item\n3. View Inventory\n4. Quick Sell an item\n5.Exit\n"; // Type a number and press enter
+        cin >> menuanswer; // Get user input from the keyboard
+        switch (menuanswer) {
+        case 1:
+            cout << "1.epic\n";
+            cout << "1.epic\n";
+            break;
+        case 2:
+            break;
+        case 3:
+            break;
+        case 4:
+            break;
+        case 5:
+            return 0;
+        }
     }
 }
 
