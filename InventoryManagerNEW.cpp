@@ -5,7 +5,6 @@
 using namespace std;
 
 #include <vector>
-
 #include <iomanip>
 
 
@@ -14,6 +13,7 @@ int main()
     vector<string> names;
     vector<int> quantities;
     vector<int> values;
+    int gold = 0;
     while (true) {
 
         cout << "Inventory Manager: Please select an option\n";
@@ -23,7 +23,7 @@ int main()
         int value;
 
 
-        cout << "1. Add an item\n2. Drop an item\n3. View Inventory\n4. Quick Sell an item\n5.Exit\n"; // Type a number and press enter
+        cout << "1. Add an item\n2. Drop an item\n3. View Inventory\n4. Quick Sell an item\n5. Display Gold\n6. Buy an item\n7. Exit\n"; // Type a number and press enter
         cin >> menuanswer; // Get user input from the keyboard
         switch (menuanswer) {
         case 1:
@@ -45,35 +45,126 @@ int main()
 
             string delitem;
             int delitemint;
-            cout << "What item would you like to drop";
+            if (names.size() == 0) {
+                cout << "Inventory is empty\n";
+                break;
+            };
+            cout << "What item would you like to drop?\n";
             cin >> delitem;
-            auto deleteind = find(names.begin(), names.end(), delitem);
-            int delind = distance(names.begin(),deleteind);
-            delitemint = quantities[delind];
-            //auto deleteind1 = find(names.begin(), names.end(), delitemint);
-            names.erase(deleteind);
-            quantities.erase(quantities.begin() + delind);
-            values.erase(values.begin() + delind);
+            if (find(names.begin(), names.end(), delitem) != names.end()) {
+                auto deleteind = find(names.begin(), names.end(), delitem);
+                int delind = distance(names.begin(), deleteind);
+                //delitemint = quantities[delind];
+                //auto deleteind1 = find(names.begin(), names.end(), delitemint);
+                names.erase(deleteind);
+                quantities.erase(quantities.begin() + delind);
+                values.erase(values.begin() + delind);
+                break;
+            }
+            else {
+                cout << "Could not find item.\n";
+                break;
+            };
+            
+        }
+        case 3:
+            cout << "\n";
+            cout << "Inventory contains: \n";
+            cout << "Name      Amount  Value     \n";
+            if (names.size() == 0) {
+                cout << "The inventory is empty\n";
+            };
+            for (int i = 0; i < names.size(); i++)
+                cout << left << setw(10) << names[i] << left << setw(8) << quantities[i] << left << values[i]<< "\n";
+            break;
+        case 4: 
+        {
+            string sellitem;
+            if (names.size() == 0) {
+                cout << "Nothing to sell\n";
+                break;
+            }
+            cout << "What item would you like to sell?\n";
+            cin >> sellitem;
+            if (find(names.begin(), names.end(), sellitem) != names.end()) {
+                auto sellind = find(names.begin(), names.end(), sellitem);
+                int valueind = distance(names.begin(), sellind);
+                gold = values[valueind]*quantities[valueind] + gold;
+                names.erase(sellind);
+                quantities.erase(quantities.begin() + valueind);
+                values.erase(values.begin() + valueind);
+                
+
+            }
+            else {
+                cout << "Item not found\n";
+                break;
+            }
+            break;
+        }
+        case 5:
+        {
+            cout << gold << "\n";
+            break;
+        }
+        case 6: {
+            int itemnumber;
+            string item;
+            int value;
+            int quantity;
+            if (gold <= 0) {
+                cout << "You have no money\n";
+                break;
+            }
+            cout << "What Item would you like to buy?\n1. Sword - 50\n2. Shield - 25\n3. Boots -2\n4. Custom\n";
+            cin >> itemnumber;
+            cout << "How many would you like to buy?\n";
+            cin >> quantity;
+            switch (itemnumber) {
+            case 1:
+                item = "Sword";
+                value = 50;
+                break;
+            case 2:
+                item = "Shield";
+                value = 25;
+                break;
+            case 3:
+                item = "Boots";
+                value = 20;
+                break;
+            case 4:
+                cout << "What is the name of what you would like to buy?\n";
+                cin >> item;
+                cout << "How much does it cost?\n";
+                cin >> value;
+                break;
+
+            }
+
+            if (gold >= value * quantity) {
+                 gold = gold - value * quantity;
+                 names.emplace_back(item);
+                 quantities.emplace_back(quantity);
+                 values.emplace_back(value);
+                 cout << "Item successfully purchased!!\n";
+                 break;
+                }
+
+            else{
+                cout << "Not enough money for purchase\n";
+                break;
+            }
 
 
             break;
         }
-        case 3:
-            cout << "Inventory contains: \n";
-            cout << "Name      Amount  Value     \n";
-            for (int i = 0; i < names.size(); i++)
-                cout << left << setw(10) << names[i] << left << setw(8) << quantities[i] << left << values[i]<< "\n";
-            
-
-
-            break;
-        case 4:
-            break;
-        case 5:
+        case 7:
             return 0;
         }
     }
 }
+
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
 // Debug program: F5 or Debug > Start Debugging menu
