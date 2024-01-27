@@ -112,7 +112,7 @@ int main()
                 cout << "You have no money\n"; // checks if the user has money to buy things
                 break;
             }
-            cout << "What Item would you like to buy?\n1. Sword - 50\n2. Shield - 25\n3. Boots -2\n4. Custom\n";  //Asks user what item they want to buy
+            cout << "What Item would you like to buy?\n1. Sword - 50\n2. Shield - 25\n3. Boots -20\n4. Custom\n";  //Asks user what item they want to buy
             cin >> itemnumber;
             cout << "How many would you like to buy?\n";  // asks user how many items they want to buy
             cin >> quantity;
